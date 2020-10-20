@@ -2,17 +2,17 @@
     {
         "name":"McDonald's",
         "id":1,
-        "rating":4.1,
+        "rating":"4.1",
         "eta":40,
-        "photo":"",
+        "photo":"McDonald's.jpg",
         "tags":["fast food","Chinese"]
     },
     {
         "name": "Burger King",
         "id": 2,
-        "rating": 4.0,
+        "rating":"4.0",
         "eta": 45,
-        "photo": "",
+        "photo": "Burger King.jpg",
         "tags": [
             "Fast Food",
             "Burgers",
@@ -22,9 +22,9 @@
     {
         "name": "Dominos's Pizza",
         "id": 3,
-        "rating": 4.4,
+        "rating": "4.4",
         "eta": 30,
-        "photo": "",
+        "photo": "Domino;s Pizza.jpg",
         "tags": [
             "Pizzas"
         ]
@@ -32,9 +32,9 @@
     {
         "name": "Subway",
         "id": 4,
-        "rating": 4.2,
+        "rating": "4.2",
         "eta": 50,
-        "photo": "",
+        "photo": "Subway.jpg",
         "tags": [
             "Fast Food",
             "Salads",
@@ -46,9 +46,9 @@
     {
         "name": "Faasos",
         "id": 5,
-        "rating": 4.1,
+        "rating": "4.1",
         "eta": 35,
-        "photo": "",
+        "photo": "Faasos.jpg",
         "tags": [
             "North Indian",
             "Fast Food",

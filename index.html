@@ -11,252 +11,28 @@
 </head>
 <body>
 
-   <div class="main-container"> 
-    <div class="container" id="render-view">
+   <div class="main-container">
+       <div class="">
+           <input type="text">
+        
+           <select id="sort-filter" onchange="sortFilterHandler()">
+               <option value="none" selected disabled>Sort By</option>
+               <option value="rating">Rating</option>
+               <option value="eta">ETA</option>
+           </select>
 
-        <div class="card">
+           <select id="tags-filter" onchange="onTagChangeHandler()">
+               <option></option>
+           </select>
+
+        </div>
+
+
+        <div class="container" id="render-view">
+
             
-            <div class="card-img">
-                <img src="burgerking.jpg"
-                 alt="burger king" >
-            </div>
-
-            <div class="card-title">
-                <h1 class="title">Burger King</h1>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-            </div>
-            
-            <div class="card-body">
-                <p class="rating">4.1</p>
-                <p class="eta">25 min</p>
-            </div>
-
         </div>
-
-
-        <div class="card">
-        
-            <div class="card-img">
-                <img src="burgerking.jpg" alt="burger king">
-            </div>
-        
-            <div class="card-title">
-                <h1 class="title">Burger King</h1>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-            </div>
-        
-            <div class="card-body">
-                <p class="rating">4.1</p>
-                <p class="eta">25 min</p>
-            </div>
-        
-        </div>
-
-
-        <div class="card">
-        
-            <div class="card-img">
-                <img src="burgerking.jpg" alt="burger king">
-            </div>
-        
-            <div class="card-title">
-                <h1 class="title">Burger King</h1>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-            </div>
-        
-            <div class="card-body">
-                <p class="rating">4.1</p>
-                <p class="eta">25 min</p>
-            </div>
-        
-        </div>
-
-
-        <div class="card">
-        
-            <div class="card-img">
-                <img src="burgerking.jpg" alt="burger king">
-            </div>
-        
-            <div class="card-title">
-                <h1 class="title">Burger King</h1>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-            </div>
-        
-            <div class="card-body">
-                <p class="rating">4.1</p>
-                <p class="eta">25 min</p>
-            </div>
-        
-        </div>
-
-
-
-        <div class="card">
-        
-            <div class="card-img">
-                <img src="burgerking.jpg" alt="burger king">
-            </div>
-        
-            <div class="card-title">
-                <h1 class="title">Burger King</h1>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-            </div>
-        
-            <div class="card-body">
-                <p class="rating">4.1</p>
-                <p class="eta">25 min</p>
-            </div>
-        
-        </div>
-
-
-        <div class="card">
-        
-            <div class="card-img">
-                <img src="burgerking.jpg" alt="burger king">
-            </div>
-        
-            <div class="card-title">
-                <h1 class="title">Burger King</h1>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-            </div>
-        
-            <div class="card-body">
-                <p class="rating">4.1</p>
-                <p class="eta">25 min</p>
-            </div>
-        
-        </div>
-
-
-        <div class="card">
-        
-            <div class="card-img">
-                <img src="burgerking.jpg" alt="burger king">
-            </div>
-        
-            <div class="card-title">
-                <h1 class="title">Burger King</h1>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-            </div>
-        
-            <div class="card-body">
-                <p class="rating">4.1</p>
-                <p class="eta">25 min</p>
-            </div>
-        
-        </div>
-
-
-        <div class="card">
-        
-            <div class="card-img">
-                <img src="burgerking.jpg" alt="burger king">
-            </div>
-        
-            <div class="card-title">
-                <h1 class="title">Burger King</h1>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-            </div>
-        
-            <div class="card-body">
-                <p class="rating">4.1</p>
-                <p class="eta">25 min</p>
-            </div>
-        
-        </div>
-
-
-        <div class="card">
-        
-            <div class="card-img">
-                <img src="burgerking.jpg" alt="burger king">
-            </div>
-        
-            <div class="card-title">
-                <h1 class="title">Burger King</h1>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-            </div>
-        
-            <div class="card-body">
-                <p class="rating">4.1</p>
-                <p class="eta">25 min</p>
-            </div>
-        
-        </div>
-
-
-
-        <div class="card">
-        
-            <div class="card-img">
-                <img src="burgerking.jpg" alt="burger king">
-            </div>
-        
-            <div class="card-title">
-                <h1 class="title">Burger King</h1>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-                <span class="tag">Fast Foodd</span>
-            </div>
-        
-            <div class="card-body">
-                <p class="rating">4.1</p>
-                <p class="eta">25 min</p>
-            </div>
-        
-        </div>
-     </div>
-</div>
+    </div>
 
     <script src="index.js"></script>
 </body>

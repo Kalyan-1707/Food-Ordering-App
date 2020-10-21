@@ -21,7 +21,7 @@ body{
 .container{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-    grid-row-gap:20px;
+    row-gap: 20px;
 }
 
 .card{
@@ -30,17 +30,20 @@ body{
     border: 1px solid black;
     display: flex;
     flex-direction: column;
+    border-radius: 0.5rem;
 }
 
 .card .card-img{
     width: 300px;
     height: 200px;
-    padding: 1px;
+    padding: 0.5px;
 }
 
 .card .card-img img{
-    width: 298px;
-    height: 198px;
+    width: 299px;
+    height: 199px;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
 }
 
 .card .card-title{

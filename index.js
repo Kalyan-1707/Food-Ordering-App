@@ -1,13 +1,99 @@
+let apiData;
+let currData;
+
+const tagFilter = document.getElementById("tags-filter");
+const sortFilter = document.getElementById("sort-filter");
+
+
+const onTagChangeHandler = () => {
+
+    const value=tagFilter.value;
+
+    if(value == "All")
+    {
+        currData=apiData;
+    }
+
+    else
+    {
+        const filterData = apiData.filter( (item) => {
+
+            flag=0;
+
+            item.tags.forEach((tag) => {
+                if(tag == value)
+                flag=1;
+            });
+
+            if(flag)
+            return item;
+
+        });
+
+        currData=filterData;
+    }
+    
+    displayView(currData);
+    
+}
+
+const sortFilterHandler = () => {
+
+    let sortFilterProp=sortFilter.value;
+
+    let sortData;
+
+    if(sortFilterProp == 'rating')
+         sortData = currData.sort((a, b) => b[sortFilterProp] - a[sortFilterProp] );
+
+    else
+         sortData = currData.sort((a, b) => a[sortFilterProp] - b[sortFilterProp]);
+
+
+    currData=sortData;
+
+    displayView(currData);
+
+}
+
 const getData = async () => {
     const res = await axios.get("https://raw.githubusercontent.com/Kalyan-1707/Food-Ordering-App/main/restaruants.json");
 
-    console.log(res.data);
+    apiData=res.data;
+    currData=apiData;
+    
     displayView(res.data);
+    setTags(res.data);
 }
+
+const setTags = (data) => {
+
+    let tags = new Set();
+
+    data.forEach((item) => {
+
+        item.tags.forEach((tag) => {
+            tags.add(tag);
+        });
+
+    });
+
+    let options='';
+
+    options +=` <option value="none" selected disabled>Filter By</option>`
+
+    options += `<option value="All" >All</option>`;
+
+    tags.forEach((tag) => {
+        options += ` <option value="${tag}" >${tag}</option>`
+    });
+
+    tagFilter.innerHTML=options;
+
+} 
 
 const displayView = (data) => {
 
-    console.log(data);
 
     let div = document.getElementById("render-view");
 
@@ -48,4 +134,10 @@ const displayView = (data) => {
 
 }
 
+
 getData();
+
+
+//Event Handlers
+
+//tagFilter.addEventListener('onChange', onTagChangeHandler());

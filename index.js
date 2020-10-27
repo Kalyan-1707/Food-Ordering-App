@@ -3,6 +3,10 @@ let currData;
 
 const tagFilter = document.getElementById("tags-filter");
 const sortFilter = document.getElementById("sort-filter");
+const searchBox = document.getElementById("searchBox");
+const autoCompleteDiv = document.getElementById("auto-complete-div");
+
+let interval_Id; //for debouncing
 
 
 const onTagChangeHandler = () => {
@@ -134,10 +138,73 @@ const displayView = (data) => {
 
 }
 
+const updateAutoFillDiv = () => {
+
+    console.log(apiData);
+
+    const res = apiData.filter( (item) => {
+
+        console.log(item.name,searchBox.value);
+
+        console.log(item.name.search(searchBox.value));
+
+        if(item.name.search(searchBox.value) >= 0){
+            return true;
+        }
+    })
+
+    console.log(res);
+
+    let options="";
+
+    res.forEach( (item) => {
+        options+=` <div value="${item.name}" onclick="updateSearchBox(this)">${item.name}</div> `
+    }) 
+
+    autoCompleteDiv.innerHTML=options;
+
+    autoCompleteDiv.style.display="block";
+
+    console.log("updated",searchBox.value);
+
+}
+
+const debouncing = (delay,func) =>{
+
+    console.log("called");
+
+    if(interval_Id){
+     clearTimeout(interval_Id);
+    }
+
+    interval_Id = setTimeout(() => {
+
+        func();
+
+    },delay);
+
+}
+
+
+function updateSearchBox(elt)
+{
+    searchBox.value=elt.getAttribute("value");
+
+    autoCompleteDiv.style.display="none";
+}
+
 
 getData();
 
 
 //Event Handlers
 
-//tagFilter.addEventListener('onChange', onTagChangeHandler());
+searchBox.addEventListener('input',() => {
+    debouncing(400,updateAutoFillDiv);
+});
+
+document.addEventListener('click',(event) => {
+    if(!autoCompleteDiv.contains(event.target)){
+        autoCompleteDiv.style.display="none";
+    }
+})

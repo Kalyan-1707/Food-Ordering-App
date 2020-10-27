@@ -1,11 +1,12 @@
 
-body{
+*{
     box-sizing: border-box;
 }
 
 .main-container{
     width: 80%;
     margin: auto;
+    
 }
 
 @media only screen and (max-width: 600px) {
@@ -76,4 +77,65 @@ body{
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+}
+
+.header-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-content: space-around;
+    grid-template-areas: "searchBox searchBox searchBox"
+                         "sortFilter searchBtn tagFilter";
+    
+}
+
+.autocomplete{
+    position: relative;
+    grid-area: searchBox;
+    margin: auto;
+
+}
+
+.autocomplete input{
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 0.5em;
+    margin: 0.25em;
+}
+
+.autocomplete-items{
+    position: absolute;
+    top:99%;
+    left:5%;
+    z-index: 999;
+    border: 1px solid black;
+    width: 94%;
+    font-size: 1.5rem;
+    padding: 0.5em;
+    background-color: whitesmoke;
+    display: none; 
+}
+
+.autocomplete-items div{
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+.autocomplete-items div:hover{
+    background-color: aqua;
+    cursor: pointer;
+}
+.searchBtn{
+    margin: auto;
+    grid-area: searchBtn;
+}
+.sort-filter{
+    
+    grid-area: sortFilter;
+    margin: auto;
+}
+
+.tags-filter{
+    grid-area: tagFilter;
+    margin: auto;
 }

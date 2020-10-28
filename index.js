@@ -5,6 +5,7 @@ const tagFilter = document.getElementById("tags-filter");
 const sortFilter = document.getElementById("sort-filter");
 const searchBox = document.getElementById("searchBox");
 const autoCompleteDiv = document.getElementById("auto-complete-div");
+const clearBtn = document.querySelector(".clearBtn");
 
 let interval_Id; //for debouncing
 
@@ -144,16 +145,22 @@ const updateAutoFillDiv = () => {
 
     const res = apiData.filter( (item) => {
 
-        console.log(item.name,searchBox.value);
+        //console.log(item.name,searchBox.value);
 
-        console.log(item.name.search(searchBox.value));
+        //console.log(item.name.toLowerCase().search(searchBox.value.toLowerCase()));
 
-        if(item.name.search(searchBox.value) >= 0){
+        if(item.name.toLowerCase().search(searchBox.value.toLowerCase()) >= 0){
             return true;
         }
     })
 
-    console.log(res);
+    //console.log(res);
+
+    if(res.length == 0)
+    {
+        autoCompleteDiv.style.display="none";
+        return;
+    }
 
     let options="";
 
@@ -191,6 +198,21 @@ function updateSearchBox(elt)
     searchBox.value=elt.getAttribute("value");
 
     autoCompleteDiv.style.display="none";
+
+    const searchReslt = apiData.filter( (item) => {
+
+        if(item.name.search(searchBox.value) >=0){
+            return true;
+        }
+
+    })
+
+    currData=searchReslt;
+
+    console.log(currData);
+
+    displayView(currData);
+
 }
 
 
@@ -202,6 +224,13 @@ getData();
 searchBox.addEventListener('input',() => {
     debouncing(400,updateAutoFillDiv);
 });
+
+clearBtn.addEventListener('click',() => {
+    searchBox.value = "";
+    displayView(apiData);
+    sortFilter.selectedIndex = 0;
+    tagFilter.selectedIndex = 0;
+})
 
 document.addEventListener('click',(event) => {
     if(!autoCompleteDiv.contains(event.target)){

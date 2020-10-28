@@ -85,7 +85,7 @@
     grid-template-rows: 1fr 1fr;
     justify-content: space-around;
     grid-template-areas: "searchBox searchBox searchBox"
-                         "sortFilter searchBtn tagFilter";
+                         "sortFilter clearBtn tagFilter";
     
 }
 
@@ -101,41 +101,78 @@
     font-size: 1.5rem;
     padding: 0.5em;
     margin: 0.25em;
+    border-radius: 0.5em;
+    outline: none;
+}
+
+.autocomplete input:focus{
+    box-shadow: 0 0 0.5em 0 gray;
 }
 
 .autocomplete-items{
+  
     position: absolute;
     top:99%;
     left:5%;
     z-index: 999;
-    border: 1px solid black;
     width: 94%;
     font-size: 1.5rem;
     padding: 0.5em;
     background-color: whitesmoke;
     display: none; 
+    max-height: 200px;
+    overflow: auto;
 }
 
 .autocomplete-items div{
     padding: 10px;
-    border-bottom: 1px solid black;
 }
 
 .autocomplete-items div:hover{
-    background-color: aqua;
+    background-color: rgb(187, 186, 186);
     cursor: pointer;
 }
-.searchBtn{
+.clearBtn{
     margin: auto;
-    grid-area: searchBtn;
+    grid-area: clearBtn;
 }
+
+.clearBtn button{
+    cursor: pointer;
+    font-size: 1.25rem;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    border:1px solid gray;
+    outline: none;
+}
+
+.clearBtn button:hover ,.clearBtn button:focus {
+    border:1px solid gray;
+    box-shadow: 0 0 0.5em 0 gray;
+}
+
 .sort-filter{
     
     grid-area: sortFilter;
     margin: auto;
+
 }
 
 .tags-filter{
     grid-area: tagFilter;
     margin: auto;
+}
+
+.sort-filter select , .tags-filter select{
+    font-size: 1.25rem;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    outline: none;
+}
+
+.sort-filter select:focus , .tags-filter select:focus{
+
+    box-shadow: 0 0 0.5em 0 gray;
+
 }

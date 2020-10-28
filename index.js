@@ -120,6 +120,7 @@ const displayView = (data) => {
         
             <div class="card-img">
                 <img src="${item.photo}" alt="burger king">
+                <button class="fav"><i class="fas fa-heart"></i></button>
             </div>
         
             <div class="card-title">

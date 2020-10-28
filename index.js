@@ -6,8 +6,12 @@ const sortFilter = document.getElementById("sort-filter");
 const searchBox = document.getElementById("searchBox");
 const autoCompleteDiv = document.getElementById("auto-complete-div");
 const clearBtn = document.querySelector(".clearBtn");
+const homeBtn =document.querySelector("#homeBtn"); // to display default list items
+const favBtn = document.querySelector("#favBtn"); // to display fav list items
+let favList= new Array();                       // temporary storage variable 
 
 let interval_Id; //for debouncing
+
 
 
 const onTagChangeHandler = () => {
@@ -120,7 +124,7 @@ const displayView = (data) => {
         
             <div class="card-img">
                 <img src="${item.photo}" alt="burger king">
-                <button class="fav"><i class="fas fa-heart"></i></button>
+                <button class="fav" value="${item.id}"><i class="fas fa-heart"></i></button>
             </div>
         
             <div class="card-title">
@@ -217,8 +221,18 @@ function updateSearchBox(elt)
 
 }
 
-
+//api fetch
 getData();
+
+// to check for localstorage of favourites and store them if exists
+if(!localStorage.getItem("favList"))
+{
+    localStorage.setItem("favList",JSON.stringify(new Array()));
+}
+else{
+    favList=JSON.parse(localStorage.getItem("favList"));
+}
+
 
 
 //Event Handlers
@@ -240,4 +254,60 @@ document.addEventListener('click',(event) => {
     if(!autoCompleteDiv.contains(event.target)){
         autoCompleteDiv.style.display="none";
     }
+})
+
+document.addEventListener('click',(event) =>{
+
+    if(event.target.classList.contains("fav") || event.target.classList.contains("fa-heart")){
+     if(! favList.includes(event.target.getAttribute("value"))){   
+     favList.push(event.target.getAttribute("value"))
+    }   
+     localStorage.setItem("favList",JSON.stringify(favList));
+
+     console.log(JSON.stringify(favList));
+
+     console.log(localStorage.getItem(favList));
+    }
+
+})
+
+favBtn.addEventListener('click',() => {
+
+    const favItems = JSON.parse(localStorage.getItem("favList"));
+
+    console.log(favItems);
+
+    if(favItems.length == 0){
+        displayView(new Array());
+        return;
+    }
+
+    const favourites = apiData.filter( (item) => {
+        if(favItems.includes(item.id.toString(10))){
+            return true;
+        }
+    })
+
+    console.log(favourites);
+
+    currData=favourites;
+
+    sortFilter.selectedIndex = 0;
+    tagFilter.selectedIndex = 0;
+    
+    displayView(favourites);
+
+})
+
+homeBtn.addEventListener('click', () => {
+    
+    console.log('home view');
+
+    currData=apiData;
+    
+    sortFilter.selectedIndex = 0;
+    tagFilter.selectedIndex = 0;
+
+    displayView(apiData);
+    
 })

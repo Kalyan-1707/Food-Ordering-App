@@ -3,6 +3,21 @@
     box-sizing: border-box;
 }
 
+nav{
+    display: block;
+    background-color: #d9d7d7;
+    padding: 0.5em;
+}
+
+nav *{
+    display: inline-block;
+    margin: auto;
+}
+
+nav button{
+    float: right;
+}
+
 .main-container{
     width: 80%;
     margin: auto;
@@ -16,7 +31,6 @@
     margin: auto;
 }
 
-    
 }
 
 .container{
@@ -25,6 +39,7 @@
     row-gap: 20px;
 }
 
+
 .card{
     width: 300px;
     height: 350px;
@@ -32,6 +47,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 0.5rem;
+    margin: auto;
 }
 
 .card .card-img{

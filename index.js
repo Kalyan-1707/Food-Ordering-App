@@ -69,6 +69,7 @@ const getData = async () => {
     
     displayView(res.data);
     setTags(res.data);
+    console.log(apiData);
 }
 
 const setTags = (data) => {
@@ -230,6 +231,8 @@ clearBtn.addEventListener('click',() => {
     displayView(apiData);
     sortFilter.selectedIndex = 0;
     tagFilter.selectedIndex = 0;
+    currData=apiData;
+    displayView(apiData);
 })
 
 document.addEventListener('click',(event) => {

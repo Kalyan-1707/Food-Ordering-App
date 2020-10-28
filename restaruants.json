@@ -55,5 +55,68 @@
             "Biryani",
             "Desserts"
         ]
+    },
+    {
+        "name": "Indiana Burgers",
+        "id": 6,
+        "rating": "4.7",
+        "eta": 60,
+        "photo": "Indiana_Burgers.jpg",
+        "tags": [
+            "Fast Food",
+            "American"
+        ]
+    },
+    {
+        "name": "Paradise Biryani",
+        "id": 7,
+        "rating": "3.5",
+        "eta": 34,
+        "photo": "Paradise_Biryani.jpg",
+        "tags": [
+            "Biryani",
+            "Kebabs"
+        ]
+    },
+    {
+        "name": "Pizza Hut",
+        "id": 8,
+        "rating": "3.2",
+        "eta": 44,
+        "photo": "Pizza_Hut.jpg",
+        "tags": [
+            "Pizzas"
+        ]
+    },
+    {
+        "name": "Barbeque Nation",
+        "id": 9,
+        "rating": "3.6",
+        "eta": 50,
+        "photo": "Barbeque_Nation.jpg",
+        "tags": [
+            "Biryani",
+            "Kebabs",
+            "North Indian",
+            "Desserts",
+            "Sea Food"
+
+        ]
+    },
+    {
+        "name": "Viceroy Biryani Point",
+        "id": 10,
+        "rating": "4.1",
+        "eta": 25,
+        "photo": "Viceroy_Biryani_Point.jpg",
+        "tags": [
+            "Biryani",
+            "North Indian",
+            "South Indian",
+            "Chinese",
+            "Sea Food"
+
+        ]
     }
+    
 ]

@@ -126,17 +126,18 @@ const displayView = (data) => {
                 <img src="${item.photo}" alt="burger king">
                 <button class="fav" value="${item.id}"><i class="fas fa-heart"></i></button>
             </div>
-        
-            <div class="card-title">
-                <h1 class="title">${item.name}</h1>
-                ${tags}    
-            </div>
-        
+            
             <div class="card-body">
-                <p class="rating">${item.rating}</p>
-                <p class="eta">${item.eta} min</p>
+                <div class="card-title">
+                    <h1 class="title">${item.name}</h1>
+                    ${tags}    
+                </div>
+            
+                <div class="card-footer">
+                    <p class="rating">${item.rating} <i class="fas fa-star"></i></p>
+                    <p class="eta">${item.eta} min <i class="fas fa-stopwatch"></i></p>
+                </div>
             </div>
-        
         </div>`
 
     });

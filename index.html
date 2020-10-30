@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
         crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
         integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
         crossorigin="anonymous"></script>
@@ -45,7 +46,7 @@
          
 
         <div class="sort-filter">
-           <select id="sort-filter" onchange="sortFilterHandler()">
+           <select id="sort-filter" >
                <option value="none" selected disabled>Sort By</option>
                <option value="rating">Rating</option>
                <option value="eta">ETA</option>
@@ -57,7 +58,7 @@
         </div>
 
         <div class="tags-filter">
-           <select id="tags-filter" onchange="onTagChangeHandler()">
+           <select id="tags-filter">
                <option></option>
            </select>
         </div>
@@ -67,6 +68,11 @@
         <div class="container" id="render-view">
 
             
+        </div>
+
+        <div class="notification-bar">
+
+
         </div>
 
     </div>

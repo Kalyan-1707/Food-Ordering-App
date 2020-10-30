@@ -8,24 +8,25 @@ const autoCompleteDiv = document.getElementById("auto-complete-div");
 const clearBtn = document.querySelector(".clearBtn");
 const homeBtn =document.querySelector("#homeBtn"); // to display default list items
 const favBtn = document.querySelector("#favBtn"); // to display fav list items
+const notificationBar = document.querySelector('.notification-bar');
 let favList= new Array();                       // temporary storage variable 
 
 let interval_Id; //for debouncing
 
 
 
-const onTagChangeHandler = () => {
+const onTagChangeHandler = (data) => {
 
     const value=tagFilter.value;
 
-    if(value == "All")
+    if(value == "All" || value == "none")
     {
-        currData=apiData;
+        return currData;
     }
 
     else
     {
-        const filterData = apiData.filter( (item) => {
+        const tagFilterData = data.filter( (item) => {
 
             flag=0;
 
@@ -39,29 +40,26 @@ const onTagChangeHandler = () => {
 
         });
 
-        currData=filterData;
+        return tagFilterData;
     }
     
-    displayView(currData);
     
 }
 
-const sortFilterHandler = () => {
+const sortFilterHandler = (data) => {
 
     let sortFilterProp=sortFilter.value;
 
     let sortData;
 
     if(sortFilterProp == 'rating')
-         sortData = currData.sort((a, b) => b[sortFilterProp] - a[sortFilterProp] );
+         sortData = data.sort((a, b) => b[sortFilterProp] - a[sortFilterProp] );
 
     else
-         sortData = currData.sort((a, b) => a[sortFilterProp] - b[sortFilterProp]);
+         sortData = data.sort((a, b) => a[sortFilterProp] - b[sortFilterProp]);
 
 
-    currData=sortData;
-
-    displayView(currData);
+    return sortData;
 
 }
 
@@ -100,7 +98,18 @@ const setTags = (data) => {
 
     tagFilter.innerHTML=options;
 
-} 
+}
+
+const notify = (msg) => {
+
+    notificationBar.innerHTML = `<p>${msg}</p>`
+    notificationBar.style.display = "block";
+
+    setTimeout(() => {
+        notificationBar.style.display = "none";
+    }, 3000);
+
+}
 
 const displayView = (data) => {
 
@@ -222,8 +231,23 @@ function updateSearchBox(elt)
 
 }
 
+
+const onFilterChangeHandler = () => {
+
+    let filterData = onTagChangeHandler(currData);
+
+    filterData = sortFilterHandler(filterData);
+
+    displayView(filterData);
+
+    console.log(filterData);
+
+}
+
+
 //api fetch
 getData();
+
 
 // to check for localstorage of favourites and store them if exists
 if(!localStorage.getItem("favList"))
@@ -238,17 +262,25 @@ else{
 
 //Event Handlers
 
+tagFilter.addEventListener('change',() => {
+    onFilterChangeHandler();
+})
+
+sortFilter.addEventListener('change',() => {
+    onFilterChangeHandler();
+})
+
+
 searchBox.addEventListener('input',() => {
     debouncing(400,updateAutoFillDiv);
 });
 
 clearBtn.addEventListener('click',() => {
     searchBox.value = "";
-    displayView(apiData);
     sortFilter.selectedIndex = 0;
     tagFilter.selectedIndex = 0;
-    currData=apiData;
-    displayView(apiData);
+
+    displayView(currData);
 })
 
 document.addEventListener('click',(event) => {
@@ -260,18 +292,42 @@ document.addEventListener('click',(event) => {
 document.addEventListener('click',(event) =>{
 
     if(event.target.classList.contains("fav") || event.target.classList.contains("fa-heart")){
-     if(! favList.includes(event.target.getAttribute("value"))){   
-     favList.push(event.target.getAttribute("value"))
-    }   
-     localStorage.setItem("favList",JSON.stringify(favList));
 
-     console.log(JSON.stringify(favList));
+    let itemIdValue;
 
-     console.log(localStorage.getItem(favList));
+    if(event.target.classList.contains("fav"))
+    {
+         itemIdValue=event.target.getAttribute("value")
+        console.log(itemIdValue);
+    
+    }    
+    else if(event.target.classList.contains("fa-heart"))
+    {
+        itemIdValue=event.target.parentNode.getAttribute("value")
+        console.log(event.target);
+        console.log(itemIdValue);
+    }
+
+    
+    if(favList.includes(itemIdValue)){
+        favList.splice(favList.indexOf(itemIdValue),1);
+        //notify("Item removed from Fav");
+    }
+    else{ 
+    favList.push(itemIdValue);
+    //notify("Item added to Fav");
+    }
+
+  
+    localStorage.setItem("favList",JSON.stringify(favList));
+
+    console.log(JSON.stringify(favList));
+
     }
 
 })
 
+//top navigation to favourites page listener
 favBtn.addEventListener('click',() => {
 
     const favItems = JSON.parse(localStorage.getItem("favList"));
@@ -293,10 +349,11 @@ favBtn.addEventListener('click',() => {
 
     currData=favourites;
 
+    searchBox.value = "";
     sortFilter.selectedIndex = 0;
     tagFilter.selectedIndex = 0;
     
-    displayView(favourites);
+    displayView(currData);
 
 })
 
@@ -306,6 +363,7 @@ homeBtn.addEventListener('click', () => {
 
     currData=apiData;
     
+    searchBox.value = "";
     sortFilter.selectedIndex = 0;
     tagFilter.selectedIndex = 0;
 

@@ -237,3 +237,18 @@ nav button{
     box-shadow: 0 0 0.5em 0 gray;
 
 }
+
+.notification-bar{
+    position: fixed;
+    bottom: 5%;
+    left:45%;
+    background-color: #f0ad4e;
+    color: white;
+    font-size: 1.25rem;
+    padding-left: 1em;
+    padding-top: 0.2em;
+    padding-right: 1em;
+    padding-bottom: 0.2em;
+    border-radius: 0.2em;
+    display: none;
+}
